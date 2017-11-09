@@ -30,8 +30,8 @@ The computation of the log determinant with its derivatives for positive definit
 
 1. Various kernel types, such as square-exponential, Matérn, and spectral mixture.
 2. Both Gaussian and non-Gaussian likelihood.
-3. High-dimensional feature space.
-4. Previously prohibitive data size.
+3. Previously prohibitive data size.
+<!---4. High-dimensional feature space.--->
 
 
 ## Setup
@@ -40,6 +40,8 @@ The computation of the log determinant with its derivatives for positive definit
 2. Run startup.m
 
 ## Usage
+
+The code is built with Matlab. In particular, the Lanczos algorithm with reorthogonalization uses ARPACK which comes with Matlab by default. If you are using Octave and require reorthogonalization, replace *lanczos_arpack* with *lanczos_full* in *cov/apx.m*. Fast Lanczos implementation without reorthogonalization is also available by setting *ldB2_maxit = -niter*. Please check the comments in demos for example.
 
 ### Hickory
 
