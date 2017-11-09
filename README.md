@@ -26,7 +26,13 @@ The bibliographic information for the paper is
 
 ## Introduction
  
-The computation of the log determinant of an In our paper, we propose a few novel linear-scaling approches to 
+The computation of the log determinant with its derivatives for positive definite kernel matrices appears in many applications, such as Bayesian neural networks, determinantal point processes, elliptical graphical models, and kernel learning for Gaussian processes (GPs). Its cubic-scaling cost becomes the computational bottleneck for scalable numerical methods in these contexts. Here we propose a few novel linear-scaling approaches to estimate these quantities from only fast matrix vector multiplications (MVMs). Our methods are based on stochastic approximations using Chebyshev, Lanczos, and surrogate models. We illustrate the efficiency, accuracy and flexibility of our approaches with experiments covering
+
+1. Various kernel types, such as square-exponential, Matérn, and spectral mixture.
+2. Both Gaussian and non-Gaussian likelihood.
+3. High-dimensional feature space.
+4. Previously prohibitive data size.
+
 
 ## Setup
 
