@@ -4,7 +4,7 @@ function [hyp0 hyp1] = crime_demo(method, hyp)
 % Predict the Chicago assault data 
 % Training points: 126236, Testing points: 31408
 %
-% method: Logdet Approximation Methods, {'Lanczos', 'SKI'}
+% method: Logdet Approximation Methods, {'lancz', 'SKI'}
 %
 
 if nargin < 1,   method = 'lancz';   end
