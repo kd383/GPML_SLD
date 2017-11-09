@@ -82,7 +82,7 @@ opt.cg_maxit = 500; opt.cg_tol = 1e-3;
 if strcmp(method, 'lancz')
     opt.ldB2_method = 'lancz';
     opt.ldB2_hutch = sign(randn(size(xx,1),5));
-    opt.ldB2_maxit = 30;
+    opt.ldB2_maxit = -30;
 end
 
 inf_method = @(varargin)infLaplace(varargin{:},opt);

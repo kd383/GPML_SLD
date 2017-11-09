@@ -101,13 +101,13 @@ if 1
     lik = @likGauss;
     
     % set ldB2 options
-    opt.cg_maxit = 1500; 
+    opt.cg_maxit = 800; 
     opt.cg_tol = 1e-4;
     opt.pred_var = 0;
     if strcmp(method,'lancz')
         opt.ldB2_method = 'lancz';
-        opt.ldB2_maxit = 50;
-        opt.ldB2_hutch = sign(randn(size(X,1),5));
+        opt.ldB2_maxit = -25;
+        opt.ldB2_hutch = sign(randn(size(X,1),3));
     end
 
     fprintf('----------Start Inference----------\n');
@@ -123,10 +123,10 @@ if 1
     tic;
     y_pred = post.predict(Xtest);
     t_predict = toc;
-    MAE = mean(abs(y_pred - ytest));
-    MAE_MP = mean(abs(bsxfun(@minus, ytest, mean(ytest))));
-    SMAE = mae / mae_mp;
-    MSE = mean((y_pred - ytest).^2);
-    fprintf('The SMAE is: %.4f.\n', SMAE);
+    mae = mean(abs(y_pred - ytest));
+    mae_mp = mean(abs(bsxfun(@minus, ytest, mean(ytest))));
+    smae = mae / mae_mp;
+    mse = mean((y_pred - ytest).^2);
+    fprintf('The SMAE is: %.4f.\n', smae);
     fprintf('The inference time is: %.4f [s]\n\n', t_predict);
 end

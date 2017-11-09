@@ -49,7 +49,7 @@ result(2,3) = toc;
 
 % Kronecker + Lanczos
 opt2.cg_maxit = 600; opt2.cg_tol = 1e-4; opt2.ldB2_method = 'lancz'; 
-opt2.ldB2_hutch = sign(randn(3600,5)); opt2.ldB2_maxit = 25;
+opt2.ldB2_hutch = sign(randn(3600,10)); opt2.ldB2_maxit = -20;
 inf2 = @(varargin)infLaplace(varargin{:},opt2);
 tic;
 hyp3 = minimize(hyp0, @gp, -60, inf2, @meanConst, cvGrid, lik, Idx, y);

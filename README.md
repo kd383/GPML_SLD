@@ -3,17 +3,16 @@ Scalable Log Determinants for Gaussian Process Kernel Learning
 
 This repository contains the experiments of the [Scalable Log Determinants for Gaussian Process Kernel Learning](PLACEHOLDER) by Kun Dong, David Eriksson, Hannes Nickisch, David Bindel, Andrew Gordon Wilson. This paper will be appearing at NIPS 2017.
 
-<!---
 The bibliographic information for the paper is
 ```bibtex
-@inproceedings{saatchiwilson2017,
-  title={Bayesian {GAN}},
-  author={Saatchi, Yunus and Wilson, Andrew Gordon},
+@inproceedings{dong2017logdet,
+  title={Scalable Log Determinants for Gaussian Process Kernel Learning},
+  author={Dong, Kun and Eriksson, David and Nickisch, Hannes and Bindel, David and Wilson, Andrew Gordon},
   booktitle={Advances in Neural Information Processing Systems},
   year={2017}
 }
 ```
---->
+
 
 
 ## Contents
@@ -27,6 +26,7 @@ The bibliographic information for the paper is
 
 ## Introduction
  
+The computation of the log determinant of an In our paper, we propose a few novel linear-scaling approches to 
 
 ## Setup
 

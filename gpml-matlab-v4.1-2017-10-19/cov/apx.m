@@ -286,7 +286,7 @@ function [ldB2,solveKiW,dW,dldB2,L,triB] = ldB2_grid(W,K,Kg,xg,Mx,cgpar,ldpar)
   elseif strncmpi(ldpar{1},'lancz',5)% stochastic estim: logdet lancz/hutchinson
     % the sign of the maxit parameter encodes whether ARPACK is used or not
     mv = ver('matlab');     % get Matlab version, ARPACK interface not in Octave
-    if numel(strfind(ldpar{1},'arpack'))==0 || numel(mv)==0
+    if numel(mv)==0
       ldpar{4} = -abs(ldpar{4});
     end
     dK = @(a,b) apxGrid('dirder',Kg,xg,Mx,a,b);
@@ -524,11 +524,16 @@ function [ld,dhyp,dW] = ldB2_lanczos(W,K,dK, m,maxit, seed,dmvm)
   if nargin<7, dmvm = 2; end, ld = 0; dhyp = 0; dW = 0;           % set defaults
   sWm = @(v) bsxfun(@times,sW,v);                            % MVM with diag(sW)
   B = @(v) v + sWm(K(sWm(v)));
+  
+  if ~arpack
+      [Qm,Tm] = lanczos_fast(B,n,V,maxit); 
+  end
+  
   for j = 1:m
     if arpack
       [Q,T] = lanczos_arpack(B,V(:,j),maxit);      % perform Lanczos with ARPACK
     else
-      [Q,T] = lanczos_full(B,V(:,j),maxit);              % perform plain Lanczos
+      Q = squeeze(Qm(:,j,:));    T = squeeze(Tm(:,:,j));
     end
     [Y,f] = eig(T); f = diag(f);
     ld = ld + n/(2*m) * (Y(1,:).^2*log(f));        % evaluate Stieltjes integral
@@ -603,3 +608,35 @@ function [Q,T] = lanczos_arpack(B,v,d)     % perform Lanczos with at most d MVMs
   ncv = int32(ncv);
   Q = Q(:,1:ncv-1);                                            % extract results
   T = diag(workl(ncv+1:2*ncv-1))+diag(workl(2:ncv-1),1)+diag(workl(2:ncv-1),-1);
+  
+  function [Q,T] = lanczos_fast(Afun, n, Z, kmax)
+  if nargin < 4, kmax = 150; end
+  % initialization
+  nZ = size(Z, 2);
+  Q = zeros(n, nZ, kmax);
+  alpha = zeros(kmax, nZ);
+  beta = zeros(kmax, nZ);
+
+  k  = 0;
+  qk = zeros(size(Z));
+  n1 = sqrt(sum(Z.^2));
+  r  = bsxfun(@rdivide,Z,n1);
+  b  = ones(1,nZ);
+  
+  % Lanczos algorithm without reorthogonalization
+  while k < kmax
+      k = k+1;
+      qkm1 = qk;
+      qk = bsxfun(@rdivide,r,b);
+      Q(:,:,k) = qk;
+      Aqk = Afun(qk);
+      alpha(k,:) = sum(qk.*Aqk);
+      r = Aqk - bsxfun(@times,qk,alpha(k,:)) - bsxfun(@times,qkm1,b);
+      b = sqrt(sum(r.^2));
+      beta(k,:) = b;
+  end
+
+  T = zeros(kmax,kmax,nZ);
+  for j = 1:nZ
+      T(:,:,j) = diag(alpha(:,j)) + diag(beta(1:end-1,j),1) + diag(beta(1:end-1,j),-1);
+  end

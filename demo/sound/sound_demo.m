@@ -8,7 +8,7 @@ function sound_demo(method, ninterp, hyp)
 % ninterp: Number of interpolation points, default: 3000
 % hyp: Initial hyper-parameters.
 %
-if nargin < 1 || isempty(method), method = 'Lanczos'; end       % Default method: Lanczos
+if nargin < 1 || isempty(method), method = 'lancz'; end       % Default method: Lanczos
 if nargin < 2 || isempty(ninterp),    ninterp = 3000; end       % Default Gridpts: 3000
 if nargin < 3,  hyp = [];   end
 
@@ -82,9 +82,9 @@ function [inf, covg, opt] = build_inf(method, xg, Ntrain)
 
 opt.cg_maxit = 1e4; opt.cg_tol = 1e-2;                       % CG solver options
 switch method
-    case 'Lanczos'
+    case 'lancz'
         opt.ldB2_method = 'lancz'; 
-        opt.ldB2_maxit = 25;                                     % Lanczos steps
+        opt.ldB2_maxit = -25;                                     % Lanczos steps
         opt.ldB2_hutch = sign(randn(Ntrain,5));        % Number of probe vectors
         inf = @(varargin) infGrid(varargin{:},opt);
         covg = {@covGrid,{@covSEiso},xg};
