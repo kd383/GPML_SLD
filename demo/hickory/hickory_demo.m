@@ -1,4 +1,9 @@
 function hickory_demo
+%
+% Hickory Tree Distribution Experiment
+% Approximate the distribution of hickory tree in a square domain
+% Number of data (tree): 703, Domain size: 60 x 60
+%
 
 set(0,'DefaultFigureColormap',jet);
 load('hickory_data.mat');
@@ -44,7 +49,7 @@ result(2,3) = toc;
 
 % Kronecker + Lanczos
 opt2.cg_maxit = 600; opt2.cg_tol = 1e-4; opt2.ldB2_method = 'lancz'; 
-opt2.ldB2_hutch = sign(randn(3600,5)); opt2.ldB2_maxit = 20;
+opt2.ldB2_hutch = sign(randn(3600,5)); opt2.ldB2_maxit = 25;
 inf2 = @(varargin)infLaplace(varargin{:},opt2);
 tic;
 hyp3 = minimize(hyp0, @gp, -60, inf2, @meanConst, cvGrid, lik, Idx, y);
