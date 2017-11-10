@@ -47,12 +47,13 @@ The code is built with Matlab. In particular, the Lanczos algorithm with reortho
 
 In this experiment we apply a log-Gaussian Cox model with the RBF kernel and the Poisson likelihood to a point pattern of 703 Hickory tree. The dataset comes from the R package spatstat.
 
-To run this experiment you can use the `demo_hickory` command.
+To run this experiment you can use the `demo_hickory` command. This should take about a minute, and produce the figure below.
 
 <p align="center">
-    <img src="https://github.com/kd383/GPML_SLD/files/1460254/hickory.pdf" width="700">
+    <img src="https://user-images.githubusercontent.com/21109870/32645169-d8f333e8-c5b3-11e7-8159-4c0544bbcc4e.png" width="700">
 </p>
 
+You will see that the Lanczos method produces qualitatively superior prediction than the scaled eigenvalues + Fiedler method. Flexibility is a key advantage of the Lanczos method since it only uses fast MVMs, while scaled eigenvalues method does not directly apply to non-Gaussian likelihoods, hence requires additional approximations.
 
 ### Sound
 
