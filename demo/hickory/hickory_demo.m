@@ -1,4 +1,4 @@
-function hickory_demo
+function demo_hickory
 %
 % Hickory Tree Distribution Experiment
 % Approximate the distribution of hickory tree in a square domain
@@ -10,6 +10,8 @@ load('hickory_data.mat');
 figure('outerposition',[0 0 900 900])
 subplot(2,2,1);
 plot(xy(:,1),xy(:,2),'.')
+title('Point Pattern');
+set(gca,'fontsize', 20,'fontweight','bold','XTick',0:0.5:1,'YTick',0:0.5:1);
 
 % create the "computational grid"
 n1 = 60; n2 = 60;
@@ -74,17 +76,17 @@ result(3,2) = gp(hyp3, inf2, @meanConst, cvGrid, lik, Idx, y);
 
 subplot(2,2,2);
 imagesc([0 1], [0 1], (reshape(Ef1,60,60)'));
-set(gca,'YDir','normal');
+set(gca,'YDir','normal','fontsize', 20,'fontweight','bold');
 colorbar; 
 title('Exact');
 subplot(2,2,3);
 imagesc([0 1], [0 1], (reshape(Ef2,60,60)'));
-set(gca,'YDir','normal');
+set(gca,'YDir','normal','fontsize', 20,'fontweight','bold');
 colorbar;
 title('Fiedler');
 subplot(2,2,4);
 imagesc([0 1], [0 1], (reshape(Ef3,60,60)'));
-set(gca,'YDir','normal');
+set(gca,'YDir','normal','fontsize', 20,'fontweight','bold');
 colorbar;
 title('Lanczos');
 

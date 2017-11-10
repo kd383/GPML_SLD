@@ -26,7 +26,7 @@ The bibliographic information for the paper is
 
 ## Introduction
  
-The computation of the log determinant with its derivatives for positive definite kernel matrices appears in many applications, such as Bayesian neural networks, determinantal point processes, elliptical graphical models, and kernel learning for Gaussian processes (GPs). Its cubic-scaling cost becomes the computational bottleneck for scalable numerical methods in these contexts. Here we propose a few novel linear-scaling approaches to estimate these quantities from only fast matrix vector multiplications (MVMs). Our methods are based on stochastic approximations using Chebyshev, Lanczos, and surrogate models. We illustrate the efficiency, accuracy and flexibility of our approaches with experiments covering
+The computation of the log determinant with its derivatives for positive definite kernel matrices appears in many machine learning applications, such as Bayesian neural networks, determinantal point processes, elliptical graphical models, and kernel learning for Gaussian processes (GPs). Its cubic-scaling cost becomes the computational bottleneck for scalable numerical methods in these contexts. Here we propose a few novel linear-scaling approaches to estimate these quantities from only fast matrix vector multiplications (MVMs). Our methods are based on stochastic approximations using Chebyshev, Lanczos, and surrogate models. We illustrate the efficiency, accuracy and flexibility of our approaches with experiments covering
 
 1. Various kernel types, such as square-exponential, Matérn, and spectral mixture.
 2. Both Gaussian and non-Gaussian likelihood.
@@ -43,7 +43,16 @@ The computation of the log determinant with its derivatives for positive definit
 
 The code is built with Matlab. In particular, the Lanczos algorithm with reorthogonalization uses ARPACK which comes with Matlab by default. If you are using Octave and require reorthogonalization, replace *lanczos_arpack* with *lanczos_full* in *cov/apx.m*. Fast Lanczos implementation without reorthogonalization is also available by setting *ldB2_maxit = -niter*. Please check the comments in demos for example.
 
-### Hickory
+### Hickory Tree Distribution
+
+In this experiment we apply a log-Gaussian Cox model with the RBF kernel and the Poisson likelihood to a point pattern of 703 Hickory tree. The dataset comes from the R package spatstat.
+
+To run this experiment you can use the `demo_hickory' command.
+
+<p align="center">
+    <img src="https://drive.google.com/file/d/1s1r1vU2UocFB3y-UehR-y4AubPoiS3ex/view?usp=sharing" width="700">
+</p>
+
 
 ### Sound
 

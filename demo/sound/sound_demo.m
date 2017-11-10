@@ -1,4 +1,4 @@
-function sound_demo(method, ninterp, hyp)
+function demo_sound(method, ninterp, hyp)
 %
 % Natural Sound Recovery Experiment
 % Recover contiguous missing region in a waveform using different 

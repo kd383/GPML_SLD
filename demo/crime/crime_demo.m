@@ -1,4 +1,4 @@
-function [hyp0 hyp1] = crime_demo(method, hyp)
+function [hyp0 hyp1] = demo_crime(method, hyp)
 %
 % Chicago Crime Modeling Experiment
 % Predict the Chicago assault data 
