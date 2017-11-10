@@ -19,10 +19,10 @@ The bibliographic information for the paper is
 1. [Introduction](#introduction)
 2. [Setup](#setup)
 4. [Usage](#usage)
-    1. [Hickory](#hickory)
-    2. [Sound](#sound)
-    3. [Crime](#crime)
-    4. [Precipitation](#precipitation)
+    1. [Hickory Tree Distribution](#hickory)
+    2. [Natural Sound Modeling](#sound)
+    3. [Crime Prediction](#crime)
+    4. [Precipitation Prediction](#precipitation)
 
 ## Introduction
  
@@ -61,7 +61,7 @@ In this experiment we try to recover contiguous missing regions in a waveform wi
 1. method: 'lancz' (default), 'cheby', 'ski', 'fitc'
 2. ninterp: Number of interpolative grid points. Default: 3000.
 
-Here the accuracy of the prediction is mostly controlled by the number of grid points you use for structured kernel interpolation (SKI). A reasonable range will be between 3000 and 5000. If you run the full experiment setting stored in the data file, you can produce the figure below. As the grid size grows, even the quadratic-scaling cost for scaled eigenvalues method can become prohibitive, yet our linear-scaling method remains efficient.
+Here the accuracy of the prediction is mostly controlled by the number of grid points you use for structured kernel interpolation (SKI). A reasonable range will be between 3000 and 5000. If you run the full experiment setting stored in the data file, you can produce the figure below. As the grid size grows, even the quadratic-scaling cost for scaled eigenvalues method can become prohibitive, but our linear-scaling method remains efficient.
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/21109870/32647606-1780de6a-c5c0-11e7-84f2-744e1a660c5a.png" width="200">
@@ -71,6 +71,11 @@ Here the accuracy of the prediction is mostly controlled by the number of grid p
 </p>
 
 
-### Crime
+### Crime Prediction
 
-### Precipitation
+### Precipitation Prediction
+
+This experiment involves daily precipitation data from the year of 2010 collected from around 5500 weather stations in the US. We fit the data using a GP with RBF kernel. This is a huge dataset with 628474 entries, among which 100000 will be used for testing. As a result, the hyper-parameters recovery part of the experiment takes very long. I recommend using the stored result in the data file for inference and prediction, or run the recovery on a nice desktop.
+
+The command is `demo_precip` with a single argument `method`. The default method is Lanczos, and any input other than 'lancz' uses scaled eigenvalues method.
+
