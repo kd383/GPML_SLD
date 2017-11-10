@@ -64,7 +64,7 @@ In this experiment we try to recover contiguous missing regions in a waveform wi
 Here the accuracy of the prediction is mostly controlled by the number of grid points you use for structured kernel interpolation (SKI). A reasonable range will be between 3000 and 5000. If you run the full experiment setting stored in the data file, you can produce the figure below. As the grid size grows, even the quadratic-scaling cost for scaled eigenvalues method can become prohibitive, yet our linear-scaling method remains efficient.
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/21109870/32645169-d8f333e8-c5b3-11e7-8159-4c0544bbcc4e.png" width="700">
+    <img src="GPML_SLD/demo/sound/sound_data.pdf" width="200">
 </p>
 
 
