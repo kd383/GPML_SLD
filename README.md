@@ -55,7 +55,18 @@ To run this experiment you can use the `demo_hickory` command. This should take 
 
 You will see that the Lanczos method produces qualitatively superior prediction than the scaled eigenvalues + Fiedler method. Flexibility is a key advantage of the Lanczos method since it only uses fast MVMs, while scaled eigenvalues method does not directly apply to non-Gaussian likelihoods, hence requires additional approximations.
 
-### Sound
+### Natural Sound Modeling
+
+In this experiment we try to recover contiguous missing regions in a waveform with n = 59306 data points. Use the command `demo_sound` with inputs
+1. method: 'lancz' (default), 'cheby', 'ski', 'fitc'
+2. ninterp: Number of interpolative grid points. Default: 3000.
+
+Here the accuracy of the prediction is mostly controlled by the number of grid points you use for structured kernel interpolation (SKI). A reasonable range will be between 3000 and 5000. If you run the full experiment setting stored in the data file, you can produce the figure below. As the grid size grows, even the quadratic-scaling cost for scaled eigenvalues method can become prohibitive, yet our linear-scaling method remains efficient.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/21109870/32645169-d8f333e8-c5b3-11e7-8159-4c0544bbcc4e.png" width="700">
+</p>
+
 
 ### Crime
 

@@ -6,11 +6,9 @@ function demo_sound(method, ninterp, hyp)
 %
 % method: Logdet Approximation Methods, {'Lanczos', 'Cheby', 'SKI', 'FITC'}
 % ninterp: Number of interpolation points, default: 3000
-% hyp: Initial hyper-parameters.
 %
 if nargin < 1 || isempty(method), method = 'lancz'; end       % Default method: Lanczos
 if nargin < 2 || isempty(ninterp),    ninterp = 3000; end       % Default Gridpts: 3000
-if nargin < 3,  hyp = [];   end
 
 % Loading Sound Data
 fprintf('---------Loading Data----------\n');
@@ -88,17 +86,17 @@ switch method
         opt.ldB2_hutch = sign(randn(Ntrain,5));        % Number of probe vectors
         inf = @(varargin) infGrid(varargin{:},opt);
         covg = {@covGrid,{@covSEiso},xg};
-    case 'Cheby'
+    case 'cheby'
         opt.ldB2_method = 'cheby';
         opt.ldB2_hutch = 5;                            % Number of probe vectors
         opt.ldB2_maxit = 1e3;                    % Number of iterations for eigs
         opt.ldB2_cheby_degree = 100;                % Degree of Cheby polynomial
         inf = @(varargin) infGrid(varargin{:},opt);
         covg = {@covGrid,{@covSEiso},xg};
-    case 'SKI'
+    case 'ski'
         inf = @(varargin) infGrid(varargin{:},opt);
         covg = {@covGrid,{@covSEiso},xg};
-    case 'FITC'
+    case 'fitc'
         inf = @infFITC;
         covg = {@covFITC,{@covSEiso},xg{1}};
 end
