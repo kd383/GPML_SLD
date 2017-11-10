@@ -47,7 +47,7 @@ The code is built with Matlab. In particular, the Lanczos algorithm with reortho
 
 In this experiment we apply a log-Gaussian Cox model with the RBF kernel and the Poisson likelihood to a point pattern of 703 Hickory tree. The dataset comes from the R package spatstat.
 
-To run this experiment you can use the `demo_hickory' command.
+To run this experiment you can use the `demo_hickory` command.
 
 <p align="center">
     <img src="https://drive.google.com/file/d/1s1r1vU2UocFB3y-UehR-y4AubPoiS3ex/view?usp=sharing" width="700">
