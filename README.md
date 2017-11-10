@@ -21,7 +21,7 @@ The bibliographic information for the paper is
 4. [Usage](#usage)
     1. [Hickory Tree Distribution](#hickory)
     2. [Natural Sound Modeling](#sound)
-    3. [Crime Prediction](#crime)
+    3. [Crime Forecasting](#crime)
     4. [Precipitation Prediction](#precipitation)
 
 ## Introduction
@@ -71,11 +71,19 @@ Here the accuracy of the prediction is mostly controlled by the number of grid p
 </p>
 
 
-### Crime Prediction
+### Crime Forecasting
+
+In this experiment we work on the dataset of 233088 assault incidents in Chicago from January 1, 2004 to December 31, 2013. We use the first 8 years for training and try to forecast the crime rate during the last 2 years. For the spatial dimensions, we use the log-Gaussian Cox process model, with the Matérn-5/2 kernel, the negative binomial likelihood, and the Laplace approximation for the posterior; for the temporal dimension we use a spectral mixture kernel with 20 components and an extra constant component.
+
+You can use `demo_crime` to run this experiment. It takes two arguments:
+1. method: 'lancz' (default) for Lanczos method and any other input for scaled eigenvalues method.
+2. hyp: Initial hyper-parameters for recovery.
+
+The demo returns the initial and final hyper-parameters for you to reuse. The initial hyper-parameters was originally obtained through a sampling process, which can be time-consuming and may not be a good starting point sometimes. A reasonable initialization is stored in the data file, but you may enable the function `spatiotemporal_spectral_init_poisson` to get a new one.
 
 ### Precipitation Prediction
 
-This experiment involves daily precipitation data from the year of 2010 collected from around 5500 weather stations in the US. We fit the data using a GP with RBF kernel. This is a huge dataset with 628474 entries, among which 100000 will be used for testing. As a result, the hyper-parameters recovery part of the experiment takes very long. I recommend using the stored result in the data file for inference and prediction, or run the recovery on a nice desktop.
+This experiment involves daily precipitation data from the year of 2010 collected from around 5500 weather stations in the US. We fit the data using a GP with RBF kernel. This is a huge dataset with 628474 entries, among which 100000 will be used for testing. As a result, the hyper-parameters recovery part of the experiment takes very long. I recommend using the result stored in the data file for inference and prediction, or run the recovery on a nice desktop.
 
 The command is `demo_precip` with a single argument `method`. The default method is Lanczos, and any input other than 'lancz' uses scaled eigenvalues method.
 
