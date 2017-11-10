@@ -50,7 +50,7 @@ In this experiment we apply a log-Gaussian Cox model with the RBF kernel and the
 To run this experiment you can use the `demo_hickory` command.
 
 <p align="center">
-    <img src="https://drive.google.com/file/d/1s1r1vU2UocFB3y-UehR-y4AubPoiS3ex/view?usp=sharing" width="700">
+    <img src="https://user-images.githubusercontent.com/21109870/32645169-d8f333e8-c5b3-11e7-8159-4c0544bbcc4e.png" width="700">
 </p>
 
 
